@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="EasyMall-SSM">
+    <output-path>$PROJECT_DIR$/out/artifacts/EasyMall_SSM</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="EasyMall-SSM" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/jstl.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/standard.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/log4j-1.2.12.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="EasyMall-SSM/web/Web" />
+    </root>
+  </artifact>
+</component>
