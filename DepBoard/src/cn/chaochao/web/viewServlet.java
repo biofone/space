@@ -1,7 +1,7 @@
-package cn.tedu.web;
+package cn.chaochao.web;
 
-import cn.tedu.domain.Msg;
-import cn.tedu.service.UserService;
+import cn.chaochao.domain.Msg;
+import cn.chaochao.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/viewServlet")

@@ -1,4 +1,4 @@
-package cn.tedu.web;
+package cn.chaochao.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

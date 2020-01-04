@@ -1,4 +1,4 @@
-package cn.tedu.utils;
+package cn.chaochao.utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 

@@ -1,8 +1,8 @@
-package cn.tedu.web;
+package cn.chaochao.web;
 
-import cn.tedu.domain.Msg;
-import cn.tedu.exception.MsgException;
-import cn.tedu.service.UserService;
+
+import cn.chaochao.exception.MsgException;
+import cn.chaochao.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

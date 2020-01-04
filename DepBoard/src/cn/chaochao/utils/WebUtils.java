@@ -1,4 +1,4 @@
-package cn.tedu.utils;
+package cn.chaochao.utils;
 
 public class WebUtils {
     private WebUtils(){

@@ -1,4 +1,4 @@
-package cn.tedu.domain;
+package cn.chaochao.domain;
 
 public class User {
     private int id;

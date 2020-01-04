@@ -1,9 +1,10 @@
-package cn.tedu.service;
+package cn.chaochao.service;
 
-import cn.tedu.dao.UserDao;
-import cn.tedu.domain.Msg;
-import cn.tedu.domain.User;
-import cn.tedu.exception.MsgException;
+
+import cn.chaochao.dao.UserDao;
+import cn.chaochao.domain.Msg;
+import cn.chaochao.domain.User;
+import cn.chaochao.exception.MsgException;
 
 import java.util.List;
 

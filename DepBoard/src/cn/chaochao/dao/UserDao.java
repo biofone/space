@@ -1,9 +1,8 @@
-package cn.tedu.dao;
+package cn.chaochao.dao;
 
-import cn.tedu.domain.Msg;
-import cn.tedu.domain.User;
-import cn.tedu.exception.MsgException;
-import cn.tedu.utils.JDBCUtils;
+import cn.chaochao.domain.Msg;
+import cn.chaochao.domain.User;
+import cn.chaochao.utils.JDBCUtils;
 import org.junit.Test;
 
 import java.sql.Connection;
