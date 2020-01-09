@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.dbmanage.sys.dao.SysLogDao">
+   
+   <insert id="insertObject">
+      insert into sys_logs
+      (username,operation,method,params,time,ip,createdTime)
+      values
+      (#{username},#{operation},#{method},#{params},#{time},#{ip},#{createdTime})
+   </insert>
+   
+   <delete id="deleteObjects">
+       delete from sys_logs
+       <where>
+         <foreach collection="ids"
+                  item="id">
+              or id=#{id}
+         </foreach>
+       </where>
+   </delete>
+   
+   <!-- sql元素用于对其它元素中的共性进行提取，其它
+       元素用到此元素内容，可以使用include元素进行包含 -->
+   <sql id="queryWhereId">
+     from sys_logs
+     <where>
+            <if test="username!=null and username!=''">
+               username like concat("%",#{username},"%")
+            </if>
+     </where>
+   </sql>
+   <!-- 按条件查询记录总数 -->
+   <select id="getRowCount"
+           resultType="int">
+         select count(*)
+         <include refid="queryWhereId"/>
+   </select>
+   <!-- 查询当前页记录，resultType的值为一行记录要映射的结果类型 -->
+   <select id="findPageObjects"
+           resultType="com.chao.dbmanage.sys.entity.SysLog">
+           select *
+           <include refid="queryWhereId"/>
+           order by createdTime desc
+           limit #{startIndex},#{pageSize}
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</mapper>

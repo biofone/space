@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.dbmanage.sys.dao.SysUserDao">
+   
+     <update id="updatePassword">
+         update sys_users
+         set password=#{password},
+             salt=#{salt},
+             modifiedTime=now()
+         where id=#{id}
+     </update>
+   
+   <select id="findUserByUserName"
+           resultType="com.chao.dbmanage.sys.entity.SysUser">
+      select *
+      from sys_users  
+      where username=#{username}
+    </select>
+   
+   
+    <update id="updateObject"
+           parameterType="com.chao.dbmanage.sys.entity.SysUser">
+        update sys_users
+        <set>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="mobile!=null and mobile!=''">
+                mobile=#{mobile},
+            </if>
+            <if test="deptId!=null and deptId!=''">
+                deptId=#{deptId},
+            </if>
+
+            <if test="modifiedUser!=null and modifiedUser!=''">
+                modifiedUser=#{modifiedUser},
+            </if>
+            modifiedTime=now()
+        </set>
+        /*set username=#{username},
+            mobile=#{mobile},
+            email=#{email},
+            deptId=#{deptId},
+            modifiedTime=now(),
+            modifiedUser=#{modifiedUser}*/
+         where id=#{id}
+   </update>
+      
+      <select id="findObjectById"
+              resultMap="sysUserDeptVo">
+              select *
+              from sys_users
+              where id=#{id}
+      </select>
+      
+      <insert id="insertObject"
+              parameterType="com.chao.dbmanage.sys.entity.SysUser"
+              useGeneratedKeys="true"
+              keyProperty="id">
+                 insert into sys_users
+      (username,password,deptId,email,mobile,salt,valid,
+      createdTime,modifiedTime,createdUser,modifiedUser)
+      values
+      (#{username},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
+      now(),now(),#{createdUser},#{modifiedUser})
+              
+      </insert>
+      
+      
+      <update id="validById">
+          update sys_users
+          set valid=#{valid},
+              modifiedUser=#{modifiedUser},
+              modifiedTime=now()
+          where id=#{id}
+      </update>
+      
+      <!-- resultMap一般用于自定义映射 -->
+      <resultMap type="com.chao.dbmanage.sys.vo.SysUserDeptVo"
+                  id="sysUserDeptVo">
+           <!-- 关联嵌套查询(association一般用于many2one,one2one) 
+             本次关联查询是基于deptId查询部门信息,并将部门相关信息封装到
+       SysUserDeptVo对象的sysDept属性上.
+             属性中-->
+           <association property="sysDept"
+                        column="deptId"
+                        select="com.chao.dbmanage.sys.dao.SysDeptDao.findById">
+           </association>
+      </resultMap>
+      <!-- 分页查询实现 -->
+      <select id="findPageObjects"
+              resultMap="sysUserDeptVo">
+            select *  <!-- deptId -->
+            <include refid="queryWhereId"/>
+            order by createdTime desc
+            limit #{startIndex},#{pageSize}
+      </select>
+      
+      <sql id="queryWhereId">
+           from sys_users
+           <where>
+              <if test="username!=null and username!=''">
+                username like concat("%",#{username},"%")
+              </if>
+           </where>
+      </sql>
+      
+      <!-- 按条件统计记录总数 -->
+      <select id="getRowCount"
+              resultType="int">
+           select count(*)
+           <include refid="queryWhereId"/>
+      </select>
+</mapper>
+
+
+
+
+
+
+
